@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { vibrate } from "./utils";
 
 const timeBigTimer = "25";
@@ -55,14 +55,30 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Hi Murray! It's all going to be ok...</Text>
-      <Text>{`${currentTimeMins} : ${currentTimeSecs}`}</Text>
-      <Button
-        buttonStyle={styles.myButton}
+      <Text
+        style={styles.timerText}
+      >{`${currentTimeMins} : ${currentTimeSecs}`}</Text>
+      <TouchableOpacity
+        style={styles.buttonStyle}
         onPress={startButton}
-        title="Start"
-      />
-      <Button buttonStyle={styles.myButton} onPress={stopButton} title="Stop" />
-      <Button style={styles.button} onPress={resetButton} title="Reset" />
+        accessibilityLabel="Start timer"
+      >
+        <Text style={styles.buttonText}>Start</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={stopButton}
+        accessibilityLabel="Stop timer"
+      >
+        <Text style={styles.buttonText}>Stop</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={resetButton}
+        accessibilityLabel="Reset timer"
+      >
+        <Text style={styles.buttonText}>Reset</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -73,19 +89,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "red",
-    fontSize: 28
+    backgroundColor: "red"
   },
-  button: {
-    backgroundColor: "blue",
-    borderColor: "white",
-    borderWidth: 1,
-    borderRadius: 12,
+  timerText: { fontSize: 40, padding: 10 },
+  buttonStyle: {
+    backgroundColor: "green",
+    borderRadius: 10,
+    padding: 15,
+    margin: 5
+  },
+  buttonText: {
     color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    overflow: "hidden",
-    padding: 12,
-    textAlign: "center"
+    fontSize: 20
   }
 });
